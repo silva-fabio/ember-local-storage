@@ -19,11 +19,9 @@ The `storageFor` API was inspired by [Ember State Services](https://github.com/s
 
 ## Compatibility
 
-| Ember   | Addon  | Node    |
-|---------|--------|---------|
-| >= 3.4  | >= 2.0 | >= 12.x |
-| >= 2.12 | < 2.0  | >= 10.x |
-
+* Ember.js v4.12 or above
+* Ember CLI v4.12 or above
+* Node.js v18 or above
 
 ## Changelog
 

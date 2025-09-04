@@ -16,13 +16,13 @@ export default Mixin.create({
 
   // Shorthand for the storage
   _storage() {
-    return getStorage(get(this, '_storageType'));
+    return getStorage(this._storageType);
   },
 
   init() {
     const storage = this._storage();
-    const storageKey = get(this, '_storageKey');
-    const initialContent = get(this, '_initialContent');
+    const storageKey = this._storageKey;
+    const initialContent = this._initialContent;
 
     let serialized, content;
 
@@ -50,7 +50,7 @@ export default Mixin.create({
   },
 
   _getInitialContentCopy() {
-    const initialContent = get(this, '_initialContent');
+    const initialContent = this._initialContent;
     const content = copy(initialContent, true);
 
     // copy returns a normal array when prototype extensions are off
@@ -60,7 +60,7 @@ export default Mixin.create({
 
   _addStorageListener() {
     const storage = this._storage();
-    const storageKey = get(this, '_storageKey');
+    const storageKey = this._storageKey;
 
     if (window.addEventListener) {
       this._storageEventHandler = (event) => {
@@ -72,7 +72,7 @@ export default Mixin.create({
           if (
             ('hidden' in document && !document.hidden && !this._testing) ||
             event.newValue === event.oldValue ||
-            event.newValue === JSON.stringify(this.get('content'))
+            event.newValue === JSON.stringify(this.content)
           ) {
             return;
           }
@@ -93,9 +93,9 @@ export default Mixin.create({
   _save() {
     if (this.isDestroying || this.isDestroyed) return;
     const storage = this._storage();
-    const content = get(this, 'content');
-    const storageKey = get(this, '_storageKey');
-    const initialContentString = get(this, '_initialContentString');
+    const content = this.content;
+    const storageKey = this._storageKey;
+    const initialContentString = this._initialContentString;
 
     // TODO: Why is it needed?
     if (storageKey) {
@@ -121,7 +121,7 @@ export default Mixin.create({
 
   // returns boolean
   isInitialContent() {
-    return get(this, '_isInitialContent');
+    return this._isInitialContent;
   },
 
   // reset the content
@@ -138,6 +138,6 @@ export default Mixin.create({
   // returns void
   clear() {
     this._clear();
-    delete this._storage()[get(this, '_storageKey')];
+    delete this._storage()[this._storageKey];
   },
 });

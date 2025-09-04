@@ -124,7 +124,7 @@ export default class BaseAdapter extends JSONAPIAdapter {
 
   _handleGETRequest(url, query) {
     const { type, id } = this._urlParts(url);
-    const storage = get(this, '_storage');
+    const storage = this._storage;
     const storageKey = this._storageKey(type, id);
 
     if (id) {
@@ -158,7 +158,7 @@ export default class BaseAdapter extends JSONAPIAdapter {
     const storageKey = this._storageKey(type, id);
 
     this._addToIndex(type, storageKey);
-    get(this, '_storage')[storageKey] = JSON.stringify(record.data);
+    this._storage[storageKey] = JSON.stringify(record.data);
 
     return null;
   }
@@ -168,7 +168,7 @@ export default class BaseAdapter extends JSONAPIAdapter {
     const storageKey = this._storageKey(type, id);
 
     this._addToIndex(type, storageKey);
-    get(this, '_storage')[storageKey] = JSON.stringify(record.data);
+    this._storage[storageKey] = JSON.stringify(record.data);
 
     return null;
   }
@@ -178,7 +178,7 @@ export default class BaseAdapter extends JSONAPIAdapter {
     const storageKey = this._storageKey(type, id);
 
     this._removeFromIndex(type, storageKey);
-    delete get(this, '_storage')[storageKey];
+    delete this._storage[storageKey];
 
     return null;
   }

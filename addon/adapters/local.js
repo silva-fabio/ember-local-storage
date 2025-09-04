@@ -8,7 +8,7 @@ export default class LocalStorageAdapter extends BaseAdapter {
   _storage = getStorage('local');
 
   _getIndex(type) {
-    const indices = get(this, '_indices');
+    const indices = this._indices;
 
     if (!indices[type]) {
       let storageKey = _buildKey(this, 'index-' + type);

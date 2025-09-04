@@ -6,6 +6,7 @@ const path = require('path');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 
+
 module.exports = {
   name: require('./package').name,
 
